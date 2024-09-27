@@ -403,7 +403,7 @@
     <property name="shotcut:trackHeight">30</property>
     <track producer="background"/>
     <track producer="playlist0"/>
-    <track producer="playlist1"/>
+    <track producer="playlist1" hide="video"/>
     <track producer="playlist2"/>
     <track producer="playlist3"/>
     <track producer="playlist4"/>
