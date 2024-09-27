@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mlt>
+  <profile description="HD 1080p 25 fps" width="1920" height="1080" progressive="1" frame_rate_num="25" frame_rate_den="1" sample_aspect_num="1" sample_aspect_den="1"/>
+  
+  <!-- Define the square using a color generator -->
+  <producer id="square">
+    <property name="mlt_service">color</property>
+    <property name="resource">red</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="length">100</property>
+    <property name="geometry">0=50%x100%:100x100;50=50%x50%:100x100</property>
+  </producer>
+
+  <!-- Main playlist -->
+  <playlist id="main">
+    <entry producer="square"/>
+  </playlist>
+
+  <!-- Main tractor to compose the timeline -->
+  <tractor id="tractor0">
+    <property name="shotcut:projectAudioChannels">2</property>
+    <property name="shotcut:projectFolder">0</property>
+    <track producer="main"/>
+  </tractor>
+
+</mlt>
+
