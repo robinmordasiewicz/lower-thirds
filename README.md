@@ -18,3 +18,7 @@ curl -X POST "http://localhost:8000/lower-thirds/" \
     }' \
     --output generated_file.mov
 ```
+
+```bash
+docker run --rm -v $(pwd):/mnt mltframework/melt:latest -progress2 -abort xml:lower-thirds.mlt -consumer avformat:output.mov vcodec=prores_ks pix_fmt=yuva444p10le an=1
+```
