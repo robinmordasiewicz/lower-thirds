@@ -9,10 +9,10 @@ melt -progress2 -abort xml:lower-thirds.mlt -consumer avformat:output.mov vcodec
 ```
 
 ```bash
-curl -X POST "http://localhost:8000/lower-thirds/" \
+curl -X POST "http://localhost/lower-thirds/" \
     -H "Content-Type: application/json" \
     -d '{
-        "full_name": "John Doe", 
+        "full_name": "John Doe",
         "job_title": "Senior Developer", 
         "company_name": "Tech Corp"
     }' \
@@ -21,4 +21,8 @@ curl -X POST "http://localhost:8000/lower-thirds/" \
 
 ```bash
 docker run --rm -v $(pwd):/mnt mltframework/melt:latest -progress2 -abort xml:lower-thirds.mlt -consumer avformat:output.mov vcodec=prores_ks pix_fmt=yuva444p10le an=1
+```
+
+```bash
+docker run -d --name lower-thirds -p 80:8000 lower-thirds:latest
 ```
