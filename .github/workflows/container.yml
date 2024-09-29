@@ -28,20 +28,6 @@ jobs:
         id: checkout
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
 
-      - name: Free Disk Space
-        uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: true
-
-      - name: Free Disk Space Manual
-        run: |
-          sudo apt-get remove -y --allow-remove-essential aria2 shellcheck rpm xorriso \
-            zsync gfortran-9 nginx shim-signed imagemagick libmagickcore-dev \
-            libmagickwand-dev libmagic-dev ant ant-optional kubectl \
-            mercurial apt-transport-https unixodbc-dev yarn libssl-dev snapd \
-            libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev \
-            snmp pollinate libpq-dev ruby-full subversion microsoft-edge-stable || true
-
       - name: Set up QEMU for multi-architecture builds
         uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf
         with:
