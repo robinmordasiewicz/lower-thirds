@@ -8,8 +8,8 @@ RUN apt-get update && \
 
 # Copy the necessary files for your application
 COPY ./requirements.txt /code/requirements.txt
+COPY lower-thirds.mlt /code/
 COPY ./main.py /code/
-COPY ./lower-thirds.mlt /code/
 
 # Set the working directory
 WORKDIR /code
