@@ -57,8 +57,8 @@ def generate_mov_file(request: LowerThirdsRequest):
 
         # Command to create mov file using melt
         command = [
-            "melt", "-progress2", "-abort", f"xml:{temp_mlt_path}", 
-            "-consumer", f"avformat:{output_path}", "an=1", "rc_lookahead=16", "quality=good", "speed=3", "vprofile=0", "qmax=51", "qmin=4", "slices=4", "tile-columns=6", "frame-parallel=1", "lag-in-frames=25", "row-mt=1 auto-alt-ref=0", "mlt_image_format=rgba", "pix_fmt=yuva420p an=1", "vcodec=libvpx-vp9", "crf=30"
+            "xvfb-run", "-a", "melt", "-progress2", "-abort", f"xml:{temp_mlt_path}", 
+            "-consumer", f"avformat:{output_path}", "an=1", "rc_lookahead=16", "quality=good", "speed=3", "vprofile=0", "qmax=51", "qmin=4", "slices=4", "tile-columns=6", "frame-parallel=1", "lag-in-frames=25", "row-mt=1", "auto-alt-ref=0", "mlt_image_format=rgba", "pix_fmt=yuva420p an=1", "vcodec=libvpx-vp9", "crf=30"
         ]
         subprocess.run(command, check=True)
 
