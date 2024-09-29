@@ -1,0 +1,68 @@
+---
+name: Build and Push lower-thirds
+
+on:
+  repository_dispatch:
+    types: [features]
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Dockerfile'
+      - 'main.py'
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-push:
+    timeout-minutes: 1440
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+
+      - name: Free Disk Space Manual
+        run: |
+          sudo apt-get remove -y --allow-remove-essential aria2 shellcheck rpm xorriso \
+            zsync gfortran-9 nginx shim-signed imagemagick libmagickcore-dev \
+            libmagickwand-dev libmagic-dev ant ant-optional kubectl \
+            mercurial apt-transport-https unixodbc-dev yarn libssl-dev snapd \
+            libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev \
+            snmp pollinate libpq-dev ruby-full subversion microsoft-edge-stable || true
+
+      - name: Set up QEMU for multi-architecture builds
+        uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf
+        with:
+          platforms: "linux/amd64"
+
+      - name: Setup Docker buildx for multi-architecture builds
+        uses: docker/setup-buildx-action@988b5a0280414f521da01fcc63a27aeeb4b104db
+        with:
+          use: true
+        env:
+          BUILDX_NO_DEFAULT_ATTESTATIONS: 1
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567
+        with:
+          registry: "ghcr.io"
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/lower-thirds:latest
