@@ -1,16 +1,17 @@
 # lower-thirds
 
-```bash
-melt -progress2 -abort xml:lower-thirds.mlt -consumer avformat:output.mov vcodec=qtrle pix_fmt=argb an=1
-```
+## Manual Rendering
+
+### cli
 
 ```bash
-melt -progress2 -abort xml:lower-thirds.mlt -consumer avformat:output.mov vcodec=prores_ks pix_fmt=yuva444p10le an=1
+melt -progress2 -abort xml:lower-thirds.mlt -consumer avformat:lower-thirds.webm an=1 rc_lookahead=16 quality=good speed=3 vprofile=0 qmax=51 qmin=4 slices=4 tile-columns=6 frame-parallel=1 lag-in-frames=25 row-mt=1 auto-alt-ref=0 mlt_image_format=rgba pix_fmt=yuva420p an=1 vcodec=libvpx-vp9 crf=30
 ```
 
+### docker run
+
 ```bash
-melt -progress2 -abort xml:lower-thirds.mlt -consumer avformat:output.mov vcodec=prores_ks vprofile=4 vendor=apl0 movflags=+write_colr mlt_image_format=rgb pix_fmt=yuv444p10le
-melt -progress2 -abort xml:lower-thirds.mlt -verbose -consumer avformat:outputqt.mov vcodec=prores_ks pix_fmt=yuva444p10le an=1
+docker run --rm -e SDL_AUDIODRIVER=dummy -e AUDIODEV=null -v $(pwd):/mnt mltframework/melt:latest -progress2 -abort xml:lower-thirds.mlt -consumer avformat:lower-thirds.webm an=1 rc_lookahead=16 quality=good speed=3 vprofile=0 qmax=51 qmin=4 slices=4 tile-columns=6 frame-parallel=1 lag-in-frames=25 row-mt=1 auto-alt-ref=0 mlt_image_format=rgba pix_fmt=yuva420p an=1 vcodec=libvpx-vp9 crf=30
 ```
 
 ```bash
@@ -25,14 +26,10 @@ curl -X POST "http://localhost/lower-thirds/" \
 ```
 
 ```bash
-docker run --rm -v $(pwd):/mnt mltframework/melt:latest -progress2 -abort xml:lower-thirds.mlt -consumer avformat:output.mov vcodec=prores_ks pix_fmt=yuva444p10le an=1
-```
-
-```bash
 docker run -d --name lower-thirds -p 80:8000 lower-thirds:latest
 ```
 
-## Mac install dependencies
+## Mac install
 
 ```bash
 brew install cmake automake autoconf libtool pkg-config aribb24 chromaprint fdk-aac frei0r game-music-emu hwloc jack jpeg-xl libaribcaption libavif libbluray libbs2b libcaca libdv libdvdnav libdvdread libexif libgsm libmodplug libopenmpt libplacebo libquicktime librist librsvg libsoxr libssh libvmaf libxml2 opencore-amr openh264 openjpeg openssl openvino rav1e rtmpdump rubberband sdl2 sdl2_image speex srt svt-av1 tesseract two-lame vid.stab webp xvid zeromq zimg
