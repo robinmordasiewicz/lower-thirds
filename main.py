@@ -37,7 +37,7 @@ def generate_mov_file(request: LowerThirdsRequest):
     try:
         # Generate a default filename if not provided
         if not request.filename:
-            request.filename = f"{request.full_name.replace(' ', '_')}_{uuid4().hex}.mov"
+            request.filename = f"{request.full_name.replace(' ', '_')}_{uuid4().hex}.webm"
         
         output_path = Path(MOV_DIR) / request.filename
 
