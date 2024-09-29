@@ -32,7 +32,7 @@ curl -X POST "http://localhost/lower-thirds/" \
         "job_title": "Senior Developer", 
         "company_name": "Tech Corp"
     }' \
-    --output generated_file.mov
+    --output lower-thirds.webm
 ```
 
 ## Mac install
