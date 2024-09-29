@@ -28,7 +28,7 @@
     <property name="meta.media.sample_aspect_den">1</property>
     <property name="audio_index">-1</property>
     <property name="video_index">0</property>
-    <property name="creation_time">2024-09-29T15:46:58</property>
+    <property name="creation_time">2024-09-29T18:19:17</property>
     <property name="vstream">0</property>
     <property name="meta.media.frame_rate_num">30</property>
     <property name="meta.media.frame_rate_den">1</property>
@@ -41,14 +41,14 @@
     <property name="meta.media.color_range">mpeg</property>
     <property name="shotcut:skipConvert">1</property>
     <property name="xml">was here</property>
-    <property name="shotcut:hash">3e510aab0cab2e64de1597d9657e30d1</property>
+    <property name="shotcut:hash">5c879489899f2c1817de3c92589381c6</property>
   </chain>
   <playlist id="main_bin">
     <property name="xml_retain">1</property>
     <entry producer="chain0" in="00:00:00.000" out="00:00:05.967"/>
   </playlist>
-  <producer id="black" in="00:00:00.000" out="00:00:05.967">
-    <property name="length">00:00:06.000</property>
+  <producer id="black" in="00:00:00.000" out="00:00:10.167">
+    <property name="length">00:00:10.200</property>
     <property name="eof">pause</property>
     <property name="resource">0</property>
     <property name="aspect_ratio">1</property>
@@ -57,7 +57,7 @@
     <property name="set.test_audio">0</property>
   </producer>
   <playlist id="background">
-    <entry producer="black" in="00:00:00.000" out="00:00:05.967"/>
+    <entry producer="black" in="00:00:00.000" out="00:00:10.167"/>
   </playlist>
   <producer id="producer0" in="00:00:00.000" out="03:59:59.967">
     <property name="length">04:00:00.000</property>
@@ -72,11 +72,26 @@
     <property name="ignore_points">0</property>
     <property name="xml">was here</property>
     <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter0" out="00:00:10.167">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fix_rotate_x">0</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">-91.2874 160.104 1920 1080 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+    </filter>
   </producer>
   <playlist id="playlist0">
     <property name="shotcut:video">1</property>
     <property name="shotcut:name">V1</property>
-    <entry producer="producer0" in="00:00:00.000" out="00:00:05.967"/>
+    <entry producer="producer0" in="00:00:00.000" out="00:00:10.167"/>
   </playlist>
   <chain id="chain1" out="00:00:05.967">
     <property name="length">00:00:06.000</property>
@@ -105,7 +120,7 @@
     <property name="meta.media.sample_aspect_den">1</property>
     <property name="audio_index">-1</property>
     <property name="video_index">0</property>
-    <property name="creation_time">2024-09-29T15:46:58</property>
+    <property name="creation_time">2024-09-29T18:19:17</property>
     <property name="vstream">0</property>
     <property name="meta.media.frame_rate_num">30</property>
     <property name="meta.media.frame_rate_den">1</property>
@@ -118,7 +133,7 @@
     <property name="meta.media.color_range">mpeg</property>
     <property name="shotcut:skipConvert">1</property>
     <property name="xml">was here</property>
-    <property name="shotcut:hash">3e510aab0cab2e64de1597d9657e30d1</property>
+    <property name="shotcut:hash">5c879489899f2c1817de3c92589381c6</property>
     <property name="meta.media.top_field_first">0</property>
     <property name="meta.media.progressive">1</property>
     <property name="shotcut:caption">lower-thirds.webm</property>
@@ -126,9 +141,18 @@
   <playlist id="playlist1">
     <property name="shotcut:video">1</property>
     <property name="shotcut:name">V2</property>
+    <blank length="00:00:01.667"/>
     <entry producer="chain1" in="00:00:00.000" out="00:00:05.967"/>
+    <filter id="filter1" out="00:00:10.167">
+      <property name="start">1</property>
+      <property name="level">1</property>
+      <property name="mlt_service">brightness</property>
+      <property name="shotcut:filter">brightnessOpacity</property>
+      <property name="alpha">0.8</property>
+      <property name="opacity">0.8</property>
+    </filter>
   </playlist>
-  <tractor id="tractor0" title="Shotcut version 24.09.13" in="00:00:00.000" out="00:00:05.967">
+  <tractor id="tractor0" title="Shotcut version 24.09.13" in="00:00:00.000" out="00:00:10.167">
     <property name="shotcut">1</property>
     <property name="shotcut:projectAudioChannels">2</property>
     <property name="shotcut:projectFolder">0</property>
