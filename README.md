@@ -32,7 +32,7 @@ docker run -d --name lower-thirds -p 80:8000 lower-thirds:latest
 ## Mac install
 
 ```bash
-brew install cmake automake autoconf libtool pkg-config aribb24 chromaprint fdk-aac frei0r game-music-emu hwloc jack jpeg-xl libaribcaption libavif libbluray libbs2b libcaca libdv libdvdnav libdvdread libexif libgsm libmodplug libopenmpt libplacebo libquicktime librist librsvg libsoxr libssh libvmaf libxml2 opencore-amr openh264 openjpeg openssl openvino rav1e rtmpdump rubberband sdl2 sdl2_image speex srt svt-av1 tesseract two-lame vid.stab webp xvid zeromq zimg
+brew install cmake automake autoconf libtool pkg-config aribb24 chromaprint fdk-aac frei0r game-music-emu hwloc jack jpeg-xl libaribcaption libavif libbluray libbs2b libcaca libdv libdvdnav libdvdread libexif libgsm libmodplug libopenmpt libplacebo libquicktime librist librsvg libsoxr libssh libvmaf libxml2 opencore-amr openh264 openjpeg openssl openvino rav1e rtmpdump rubberband sdl2 sdl2_image speex srt svt-av1 tesseract two-lame vid.stab webp xvid zeromq zimg tesseract-lang qt@5 swig fftw pmix open-mpi libebur128 clang-format gdk-pixbuf openal-soft glew
 ```
 
 ```bash
@@ -81,12 +81,19 @@ brew reinstall homebrew-ffmpeg/ffmpeg/ffmpeg \
 ```
 
 ```bash
+xcode-select --install
+softwareupdate --list
+softwareupdate --install --all
 export CFLAGS="-I/opt/homebrew/include"
 export LDFLAGS="-L/opt/homebrew/lib"
 export PKG_CONFIG_PATH="/opt/homebrew/lib/pkgconfig"
+export CMAKE_PREFIX_PATH="/opt/homebrew/opt/qt@5:$CMAKE_PREFIX_PATH"
 git clone https://github.com/mltframework/mlt.git
 cd mlt
-./configure --enable-gpl --enable-libx264 --enable-libx265 --enable-nonfree
-make
-sudo make install
+cmake -DMovit=OFF -DRtAudio=OFF -DSpatialAudio=OFF -DLADSPA=OFF -DWITH_ALL_PLUGINS=ON -DMLT_INSTALL_PLUGINS_DIR=/usr/local/PlugIns/mlt .
+cmake --build .
+sudo cmake --install .
 ```
+
+
+
