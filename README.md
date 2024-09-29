@@ -14,6 +14,8 @@ melt -progress2 -abort xml:lower-thirds.mlt -consumer avformat:lower-thirds.webm
 docker run --rm -e SDL_AUDIODRIVER=dummy -e AUDIODEV=null -v $(pwd):/mnt mltframework/melt:latest -progress2 -abort xml:lower-thirds.mlt -consumer avformat:lower-thirds.webm an=1 rc_lookahead=16 quality=good speed=3 vprofile=0 qmax=51 qmin=4 slices=4 tile-columns=6 frame-parallel=1 lag-in-frames=25 row-mt=1 auto-alt-ref=0 mlt_image_format=rgba pix_fmt=yuva420p an=1 vcodec=libvpx-vp9 crf=30
 ```
 
+## API
+
 ```bash
 curl -X POST "http://localhost/lower-thirds/" \
     -H "Content-Type: application/json" \
@@ -94,6 +96,3 @@ cmake -DMovit=OFF -DRtAudio=OFF -DSpatialAudio=OFF -DLADSPA=OFF -DWITH_ALL_PLUGI
 cmake --build .
 sudo cmake --install .
 ```
-
-
-
