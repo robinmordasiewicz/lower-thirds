@@ -17,7 +17,7 @@ app = FastAPI(
     openapi_url="/video/openapi.json"
 )
 
-MOV_DIR = "assets"
+MOV_DIR = "./"
 os.makedirs(MOV_DIR, exist_ok=True)  # Ensure the output directory exists
 
 MLT_LOWER_THIRDS_TEMPLATE_PATH = "lower-thirds.mlt"
