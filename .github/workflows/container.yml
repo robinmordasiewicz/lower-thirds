@@ -11,6 +11,8 @@ on:
     paths:
       - 'Dockerfile'
       - 'main.py'
+      - 'assets/*'
+      = '*.mlt'
 
 concurrency:
   group: ${{ github.workflow }}
