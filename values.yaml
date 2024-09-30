@@ -1,0 +1,27 @@
+---
+# Default values for lower-thirds.
+
+image:
+  repository: your-docker-repo/lower-thirds
+  tag: "latest"
+  pullPolicy: Always
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: lower-thirds.local
+      paths:
+        - path: /lower-thirds/
+          pathType: ImplementationSpecific
+  tls: []
+
+resources: {}
+

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "lower-thirds.fullname" . }}
+  labels:
+    app: {{ include "lower-thirds.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "lower-thirds.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "lower-thirds.name" . }}
+    spec:
+      containers:
+        - name: lower-thirds
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+
