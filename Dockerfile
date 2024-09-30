@@ -8,7 +8,6 @@ COPY lower-thirds.mlt /code/
 COPY eyebrow.mlt /code/
 COPY ./main.py /code/
 
-
 WORKDIR /code
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 ENTRYPOINT []
