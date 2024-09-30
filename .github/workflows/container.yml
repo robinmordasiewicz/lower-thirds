@@ -69,8 +69,12 @@ jobs:
           git checkout -b version-increment || git checkout version-increment
           git add VERSION
           git commit -m "Increment version to ${{ env.new_version }}"
-          git fetch origin version-increment
-          git merge origin/version-increment || git merge --abort
+          # Check if the version-increment branch exists on the remote
+          if git ls-remote --exit-code --heads origin version-increment; then
+            git fetch origin version-increment
+            git merge origin/version-increment || git merge --abort
+          fi
+          # Push the branch to the remote
           git push origin version-increment --force-with-lease
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
