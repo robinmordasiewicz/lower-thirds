@@ -14,14 +14,14 @@ col_spacing=$(((width - dot_size) / (columns - 1)))
 row_spacing=$(((height - dot_size) / (rows - 1)))
 
 # Create a new transparent image
-convert -size ${width}x${height} xc:$background png:grid.png
+convert -size ${width}x${height} xc:$background png:assets/grid.png
 
 # Add the squares to the image
 for row in $(seq 0 $((rows - 1))); do
   for col in $(seq 0 $((columns - 1))); do
     x=$((col * col_spacing))
     y=$((row * row_spacing))
-    convert grid.png -fill $dot_color -draw "rectangle $x,$y $((x + dot_size)),$((y + dot_size))" grid.png
+    convert assets/grid.png -fill $dot_color -draw "rectangle $x,$y $((x + dot_size)),$((y + dot_size))" assets/grid.png
   done
 done
 
