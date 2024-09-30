@@ -9,6 +9,9 @@ RUN apt-get update && \
 # Copy the necessary files for your application
 COPY ./requirements.txt /code/requirements.txt
 COPY lower-thirds.mlt /code/
+COPY eyebrow.mlt /code/
+COPY Fortinet_logo.svg /code/
+COPY grid.png /code/
 COPY ./main.py /code/
 
 # Set the working directory

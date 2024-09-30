@@ -1,0 +1,942 @@
+<?xml version="1.0" standalone="no"?>
+<mlt LC_NUMERIC="C" version="7.28.0" title="Shotcut version 24.09.13" producer="main_bin">
+  <profile description="PAL 4:3 DV or DVD" width="1920" height="1080" progressive="1" sample_aspect_num="1" sample_aspect_den="1" display_aspect_num="16" display_aspect_den="9" frame_rate_num="30" frame_rate_den="1" colorspace="709"/>
+  <producer id="producer0" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">grid.png</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">400</property>
+    <property name="meta.media.height">160</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2024-09-30T14:42:40</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">1dd209dc021949f602f4227be6c39d33</property>
+  </producer>
+  <producer id="producer1" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">Fortinet_logo.svg</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">1024</property>
+    <property name="meta.media.height">124</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2021-05-03T17:15:24</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">f8a5d3d9e2502df8a2c58dd8f4128d4a</property>
+  </producer>
+  <playlist id="main_bin">
+    <property name="xml_retain">1</property>
+    <entry producer="producer0" in="00:00:00.000" out="00:00:03.967"/>
+    <entry producer="producer1" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="black" in="00:00:00.000" out="00:00:03.967">
+    <property name="length">00:00:04.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">0</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="set.test_audio">0</property>
+  </producer>
+  <playlist id="background">
+    <entry producer="black" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer2" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFFFFFFF</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFFFFFFF</property>
+    <property name="shotcut:detail">#FFFFFFFF</property>
+    <property name="ignore_points">0</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+  </producer>
+  <playlist id="playlist0">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <entry producer="producer2" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer3" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFEEF0F0</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFEEF0F0</property>
+    <property name="shotcut:detail">#FFEEF0F0</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter0" out="00:00:03.967">
+      <property name="version">1</property>
+      <property name="mlt_service">frei0r.cairogradient</property>
+      <property name="shotcut:filter">gradient</property>
+      <property name="0">gradient_linear</property>
+      <property name="1">#808080</property>
+      <property name="2">0.501961</property>
+      <property name="3">#eef0f0</property>
+      <property name="4">1</property>
+      <property name="9">0.75</property>
+      <property name="10">darken</property>
+      <property name="shotcut:rect">0 100 0 1080 1</property>
+      <property name="5">0</property>
+      <property name="6">0.0925926</property>
+      <property name="7">0</property>
+      <property name="8">1.09259</property>
+      <property name="disable">1</property>
+    </filter>
+    <filter id="filter1" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0.333333</property>
+      <property name="shotcut:rect">1380 1 540 540 1</property>
+      <property name="filter.1">0.859375</property>
+      <property name="filter.2">0.250926</property>
+      <property name="filter.3">0.140625</property>
+      <property name="filter.4">0.25</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0.01</property>
+    </filter>
+    <filter id="filter2" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.75</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">1 1 1661 1080 1</property>
+      <property name="filter.1">0.433073</property>
+      <property name="filter.2">0.500926</property>
+      <property name="filter.3">0.432552</property>
+      <property name="filter.4">0.5</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+    <filter id="filter3" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.75</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">3 290 1918 789 1</property>
+      <property name="filter.1">0.501042</property>
+      <property name="filter.2">0.633796</property>
+      <property name="filter.3">0.499479</property>
+      <property name="filter.4">0.365278</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist1">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V2</property>
+    <entry producer="producer3" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer4" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFF7F7F7</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFF7F7F7</property>
+    <property name="shotcut:detail">#FFF7F7F7</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter4" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">1325 3 167 241 1</property>
+      <property name="filter.1">0.733594</property>
+      <property name="filter.2">0.114352</property>
+      <property name="filter.3">0.0434896</property>
+      <property name="filter.4">0.111574</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist2">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V3</property>
+    <entry producer="producer4" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer5" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFBEC1BE</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFBEC1BE</property>
+    <property name="shotcut:detail">#FFBEC1BE</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter5" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">1487 622 84 265 1</property>
+      <property name="filter.1">0.796354</property>
+      <property name="filter.2">0.698611</property>
+      <property name="filter.3">0.021875</property>
+      <property name="filter.4">0.122685</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist3">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V4</property>
+    <entry producer="producer5" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer6" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FF39AEB1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FF39AEB1</property>
+    <property name="shotcut:detail">#FF39AEB1</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter6" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0.333333</property>
+      <property name="shotcut:rect">1530 780 300 325 1</property>
+      <property name="filter.1">0.875</property>
+      <property name="filter.2">0.872685</property>
+      <property name="filter.3">0.078125</property>
+      <property name="filter.4">0.150463</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0.02</property>
+    </filter>
+    <filter id="filter7" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.75</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">1530 780 150 365 1</property>
+      <property name="filter.1">0.835938</property>
+      <property name="filter.2">0.891204</property>
+      <property name="filter.3">0.0390625</property>
+      <property name="filter.4">0.168981</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+    <filter id="filter8" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.75</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">1530 925 299 215 1</property>
+      <property name="filter.1">0.87474</property>
+      <property name="filter.2">0.956019</property>
+      <property name="filter.3">0.0778646</property>
+      <property name="filter.4">0.099537</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist4">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V5</property>
+    <entry producer="producer6" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer7" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FF5E9B9D</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FF5E9B9D</property>
+    <property name="shotcut:detail">#FF5E9B9D</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter9" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">1530 782 40 105 1</property>
+      <property name="filter.1">0.807292</property>
+      <property name="filter.2">0.772685</property>
+      <property name="filter.3">0.0104167</property>
+      <property name="filter.4">0.0486111</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist5">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V6</property>
+    <entry producer="producer7" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer8" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFF7F7F7</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFF7F7F7</property>
+    <property name="shotcut:detail">#FFF7F7F7</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter10" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0.333333</property>
+      <property name="shotcut:rect">70 465 300 345 1</property>
+      <property name="filter.1">0.114583</property>
+      <property name="filter.2">0.590278</property>
+      <property name="filter.3">0.078125</property>
+      <property name="filter.4">0.159722</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+    <filter id="filter11" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.75</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">70 465 170 345 1</property>
+      <property name="filter.1">0.0807292</property>
+      <property name="filter.2">0.590278</property>
+      <property name="filter.3">0.0442708</property>
+      <property name="filter.4">0.159722</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+    <filter id="filter12" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.75</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">70 574 300 240 1</property>
+      <property name="filter.1">0.114583</property>
+      <property name="filter.2">0.642593</property>
+      <property name="filter.3">0.078125</property>
+      <property name="filter.4">0.111111</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist6">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V7</property>
+    <entry producer="producer8" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer9" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFBABABA</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFBABABA</property>
+    <property name="shotcut:detail">#FFBABABA</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter13" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">70 870 300 100 1</property>
+      <property name="filter.1">0.114583</property>
+      <property name="filter.2">0.851852</property>
+      <property name="filter.3">0.078125</property>
+      <property name="filter.4">0.0462963</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist7">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V8</property>
+    <entry producer="producer9" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer10" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFCACACA</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFCACACA</property>
+    <property name="shotcut:detail">#FFCACACA</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter14" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">70 810 300 60 1</property>
+      <property name="filter.1">0.114583</property>
+      <property name="filter.2">0.777778</property>
+      <property name="filter.3">0.078125</property>
+      <property name="filter.4">0.0277778</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist8">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V9</property>
+    <entry producer="producer10" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer11" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFE02319</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFE02319</property>
+    <property name="shotcut:detail">#FFE02319</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter15" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.5</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">70 0 235 40 1</property>
+      <property name="filter.1">0.0976562</property>
+      <property name="filter.2">0.0185185</property>
+      <property name="filter.3">0.0611979</property>
+      <property name="filter.4">0.0185185</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+    <filter id="filter16" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.75</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">300 970 235 40 1</property>
+      <property name="filter.1">0.217448</property>
+      <property name="filter.2">0.916667</property>
+      <property name="filter.3">0.0611979</property>
+      <property name="filter.4">0.0185185</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="shotcut:animIn">0</property>
+      <property name="shotcut:animOut">0</property>
+      <property name="disable">0</property>
+    </filter>
+    <filter id="filter17" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">0.75</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">1420 200 235 40 1</property>
+      <property name="filter.1">0.800781</property>
+      <property name="filter.2">0.203704</property>
+      <property name="filter.3">0.0611979</property>
+      <property name="filter.4">0.0185185</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist9">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V10</property>
+    <entry producer="producer11" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer12" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">grid.png</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">400</property>
+    <property name="meta.media.height">160</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2024-09-30T14:42:40</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">1dd209dc021949f602f4227be6c39d33</property>
+    <property name="shotcut:caption">grid.png</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter18" out="00:00:03.967">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fix_rotate_x">0</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">300 70 400 160 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist10">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V11</property>
+    <entry producer="producer12" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer13" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">grid.png</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">400</property>
+    <property name="meta.media.height">160</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2024-09-30T14:42:40</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">1dd209dc021949f602f4227be6c39d33</property>
+    <property name="shotcut:caption">grid.png</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter19" out="00:00:03.967">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fix_rotate_x">0</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">1170 850 400 160 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist11">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V12</property>
+    <entry producer="producer13" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer14" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">Fortinet_logo.svg</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">1024</property>
+    <property name="meta.media.height">124</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2021-05-03T17:15:24</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">f8a5d3d9e2502df8a2c58dd8f4128d4a</property>
+    <property name="shotcut:caption">Fortinet_logo.svg</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter20" out="00:00:03.967">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fix_rotate_x">0</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">300 400 415 50.2539 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist12">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V13</property>
+    <entry producer="producer14" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer15" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#00000000</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">transparent</property>
+    <property name="shotcut:detail">transparent</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter21" out="00:00:03.967">
+      <property name="argument">VAR_TITLE_ONE</property>
+      <property name="geometry">300 525 1294 120 1</property>
+      <property name="family">Inter</property>
+      <property name="size">1080</property>
+      <property name="weight">500</property>
+      <property name="style">normal</property>
+      <property name="fgcolour">#ff000000</property>
+      <property name="bgcolour">#00000000</property>
+      <property name="olcolour">#aa000000</property>
+      <property name="pad">0</property>
+      <property name="halign">left</property>
+      <property name="valign">top</property>
+      <property name="outline">0</property>
+      <property name="opacity">1</property>
+      <property name="mlt_service">dynamictext</property>
+      <property name="shotcut:filter">dynamicText</property>
+      <property name="shotcut:usePointSize">0</property>
+      <property name="shotcut:pointSize">96</property>
+    </filter>
+  </producer>
+  <playlist id="playlist13">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V14</property>
+    <property name="meta.shotcut.vui">1</property>
+    <entry producer="producer15" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer16" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#00000000</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">transparent</property>
+    <property name="shotcut:detail">transparent</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter22" out="00:00:03.967">
+      <property name="argument">VAR_TITLE_TWO</property>
+      <property name="geometry">300 620 1294 120 1</property>
+      <property name="family">Inter</property>
+      <property name="size">1080</property>
+      <property name="weight">500</property>
+      <property name="style">normal</property>
+      <property name="fgcolour">#ff000000</property>
+      <property name="bgcolour">#00000000</property>
+      <property name="olcolour">#aa000000</property>
+      <property name="pad">0</property>
+      <property name="halign">left</property>
+      <property name="valign">top</property>
+      <property name="outline">0</property>
+      <property name="opacity">1</property>
+      <property name="mlt_service">dynamictext</property>
+      <property name="shotcut:filter">dynamicText</property>
+      <property name="shotcut:usePointSize">0</property>
+      <property name="shotcut:pointSize">96</property>
+    </filter>
+  </producer>
+  <playlist id="playlist14">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V15</property>
+    <entry producer="producer16" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <tractor id="tractor0" title="Shotcut version 24.09.13" in="00:00:00.000" out="00:00:03.967">
+    <property name="shotcut">1</property>
+    <property name="shotcut:projectAudioChannels">2</property>
+    <property name="shotcut:projectFolder">1</property>
+    <property name="shotcut:skipConvert">0</property>
+    <track producer="background"/>
+    <track producer="playlist0"/>
+    <track producer="playlist1"/>
+    <track producer="playlist2"/>
+    <track producer="playlist3"/>
+    <track producer="playlist4"/>
+    <track producer="playlist5"/>
+    <track producer="playlist6"/>
+    <track producer="playlist7"/>
+    <track producer="playlist8"/>
+    <track producer="playlist9"/>
+    <track producer="playlist10"/>
+    <track producer="playlist11"/>
+    <track producer="playlist12"/>
+    <track producer="playlist13"/>
+    <track producer="playlist14"/>
+    <transition id="transition0">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition1">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="disable">1</property>
+    </transition>
+    <transition id="transition2">
+      <property name="a_track">0</property>
+      <property name="b_track">2</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition3">
+      <property name="a_track">1</property>
+      <property name="b_track">2</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition4">
+      <property name="a_track">0</property>
+      <property name="b_track">3</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition5">
+      <property name="a_track">1</property>
+      <property name="b_track">3</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition6">
+      <property name="a_track">0</property>
+      <property name="b_track">4</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition7">
+      <property name="a_track">1</property>
+      <property name="b_track">4</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition8">
+      <property name="a_track">0</property>
+      <property name="b_track">5</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition9">
+      <property name="a_track">1</property>
+      <property name="b_track">5</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition10">
+      <property name="a_track">0</property>
+      <property name="b_track">6</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition11">
+      <property name="a_track">1</property>
+      <property name="b_track">6</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition12">
+      <property name="a_track">0</property>
+      <property name="b_track">7</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition13">
+      <property name="a_track">1</property>
+      <property name="b_track">7</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition14">
+      <property name="a_track">0</property>
+      <property name="b_track">8</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition15">
+      <property name="a_track">1</property>
+      <property name="b_track">8</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition16">
+      <property name="a_track">0</property>
+      <property name="b_track">9</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition17">
+      <property name="a_track">1</property>
+      <property name="b_track">9</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition18">
+      <property name="a_track">0</property>
+      <property name="b_track">10</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition19">
+      <property name="a_track">1</property>
+      <property name="b_track">10</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition20">
+      <property name="a_track">0</property>
+      <property name="b_track">11</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition21">
+      <property name="a_track">1</property>
+      <property name="b_track">11</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition22">
+      <property name="a_track">0</property>
+      <property name="b_track">12</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition23">
+      <property name="a_track">1</property>
+      <property name="b_track">12</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition24">
+      <property name="a_track">0</property>
+      <property name="b_track">13</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition25">
+      <property name="a_track">1</property>
+      <property name="b_track">13</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition26">
+      <property name="a_track">0</property>
+      <property name="b_track">14</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition27">
+      <property name="a_track">1</property>
+      <property name="b_track">14</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition28">
+      <property name="a_track">0</property>
+      <property name="b_track">15</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition29">
+      <property name="a_track">1</property>
+      <property name="b_track">15</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+  </tractor>
+</mlt>
