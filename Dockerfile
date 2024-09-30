@@ -2,7 +2,6 @@ FROM mltframework/melt:latest
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get -y install python3 python3-pip
-
 COPY ./requirements.txt /code/requirements.txt
 COPY ./assets /code/assets
 COPY lower-thirds.mlt /code/
