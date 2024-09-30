@@ -1,5 +1,4 @@
----
-name: Build and Push video
+name: Version Increment, Build, and Push Video
 
 on:
   repository_dispatch:
@@ -13,37 +12,94 @@ on:
       - 'main.py'
       - 'assets/*'
       - '*.mlt'
+      - 'VERSION'
 
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: true
 
 jobs:
-  build-and-push:
+  version-and-build:
     timeout-minutes: 1440
     runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
+
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
+        uses: actions/checkout@v3
+
+      - name: Verify VERSION file exists or create one
+        id: check_version
+        run: |
+          if [ ! -f VERSION ]; then
+            echo "VERSION file not found! Creating a new one with the initial value 0.0.1."
+            echo "0.0.1" > VERSION
+          fi
+
+      - name: Validate VERSION format
+        id: validate_version
+        run: |
+          VERSION_CONTENT=$(cat VERSION)
+          if [[ ! "$VERSION_CONTENT" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid version format: $VERSION_CONTENT. It should follow x.x.x format."
+            exit 1
+          fi
+          echo "::set-output name=current_version::$VERSION_CONTENT"
+
+      - name: Increment Version if Pushed to Main
+        if: github.ref == 'refs/heads/main'
+        id: increment_version
+        run: |
+          version=$(cat VERSION)
+          IFS='.' read -r major minor patch <<< "$version"
+          new_patch=$((patch + 1))
+          new_version="$major.$minor.$new_patch"
+          echo $new_version > VERSION
+          echo "New version: $new_version"
+          echo "::set-output name=new_version::$new_version"
+
+      - name: Commit and Push New Version
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b version-increment
+          git add VERSION
+          git commit -m "Increment version to ${{ steps.increment_version.outputs.new_version }}"
+          git push origin version-increment
+
+      - name: Create Pull Request for New Version
+        if: github.ref == 'refs/heads/main'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: version-increment
+          title: Increment version to ${{ steps.increment_version.outputs.new_version }}
+          body: This pull request increments the version in the VERSION file to ${{ steps.increment_version.outputs.new_version }}.
+
+      - name: Read version from VERSION file
+        id: read_version
+        run: |
+          VERSION=$(cat VERSION)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Set up QEMU for multi-architecture builds
-        uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf
+        uses: docker/setup-qemu-action@v2
         with:
           platforms: "linux/amd64"
 
       - name: Setup Docker buildx for multi-architecture builds
-        uses: docker/setup-buildx-action@988b5a0280414f521da01fcc63a27aeeb4b104db
+        uses: docker/setup-buildx-action@v2
         with:
           use: true
         env:
           BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
       - name: Log in to the Container registry
-        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567
+        uses: docker/login-action@v2
         with:
           registry: "ghcr.io"
           username: ${{ github.repository_owner }}
@@ -53,4 +109,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/video:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/video:latest
+            ghcr.io/${{ github.repository_owner }}/video:${{ env.VERSION }}
+
