@@ -84,8 +84,8 @@ jobs:
         uses: peter-evans/create-pull-request@18f7dc018cc2cd597073088f7c7591b9d1c02672
         with:
           token: ${{ secrets.PAT_TOKEN }}
-          branch: version-increment
-          base: main  # Ensure the base branch is 'main'
+          # branch: version-increment
+          # base: main  # Ensure the base branch is 'main'
           title: Increment version to ${{ env.new_version }}
           body: This pull request increments the version in the VERSION file to ${{ env.new_version }}.
 
