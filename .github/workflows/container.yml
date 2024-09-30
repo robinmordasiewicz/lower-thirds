@@ -12,7 +12,7 @@ on:
       - 'Dockerfile'
       - 'main.py'
       - 'assets/*'
-      = '*.mlt'
+      - '*.mlt'
 
 concurrency:
   group: ${{ github.workflow }}
