@@ -1,8 +1,8 @@
 {
   "image": "ghcr.io/robinmordasiewicz/devcontainer:latest",
   "initializeCommand": "docker pull ghcr.io/robinmordasiewicz/devcontainer:latest",
-  "name": "lower-thirds",
+  "name": "video",
   "runArgs": [
-    "--hostname=lower-thirds"
+    "--hostname=video"
   ]
 }
