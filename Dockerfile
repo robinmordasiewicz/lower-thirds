@@ -8,7 +8,7 @@ RUN apt-get update && \
 
 # Copy the necessary files for your application
 COPY ./requirements.txt /code/requirements.txt
-COPY ./assets /code
+COPY ./assets /code/assets
 COPY lower-thirds.mlt /code/
 COPY eyebrow.mlt /code/
 COPY ./main.py /code/
