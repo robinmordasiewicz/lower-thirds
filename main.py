@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
 from typing import Optional
 from uuid import uuid4
@@ -7,17 +7,17 @@ from pathlib import Path
 import subprocess
 import os
 
-# Refactored FastAPI with custom docs, redoc, and OpenAPI paths
+# Refactored FastAPI with custom docs, redoc, OpenAPI, and health check paths
 app = FastAPI(
     title="Lower Thirds Video API",
-    description="An API to generate lower-thirds videos with user-provided details, such as full name, job title, and company name, and download the resulting `.webm` file.",
+    description="An API to generate lower-thirds videos with user-provided details, such as full name, job title, and company name, and download the resulting `.mov` file.",
     version="1.0.0",
     docs_url="/lower-thirds/docs/",
     redoc_url="/lower-thirds/redocs/",
     openapi_url="/lower-thirds/openapi.json"
 )
 
-MOV_DIR = "webm_files"
+MOV_DIR = "mov_files"
 os.makedirs(MOV_DIR, exist_ok=True)  # Ensure the output directory exists
 
 MLT_TEMPLATE_PATH = "lower-thirds.mlt"
@@ -26,7 +26,7 @@ class LowerThirdsRequest(BaseModel):
     full_name: str = Field(..., title="Full Name", description="The full name of the person to appear in the lower-thirds.")
     job_title: str = Field(..., title="Job Title", description="The job title of the person to appear in the lower-thirds.")
     company_name: str = Field(..., title="Company Name", description="The name of the company to appear in the lower-thirds.")
-    filename: Optional[str] = Field(None, title="Filename", description="The name of the output .webm file. If not provided, a default filename will be generated.")
+    filename: Optional[str] = Field(None, title="Filename", description="The name of the output .mov file. If not provided, a default filename will be generated.")
 
     class Config:
         schema_extra = {
@@ -37,7 +37,7 @@ class LowerThirdsRequest(BaseModel):
             }
         }
 
-def generate_webm_file(request: LowerThirdsRequest):
+def generate_mov_file(request: LowerThirdsRequest):
     try:
         # Generate a default filename if not provided
         if not request.filename:
@@ -59,7 +59,7 @@ def generate_webm_file(request: LowerThirdsRequest):
         with open(temp_mlt_path, 'w') as file:
             file.write(mlt_content)
 
-        # Command to create webm file using melt
+        # Command to create mov file using melt
         command = [
             "xvfb-run", "-a", "melt", "-progress2", "-abort", f"xml:{temp_mlt_path}", 
             "-consumer", f"avformat:{output_path}", "an=1", "rc_lookahead=16", "quality=good", "speed=3", "vprofile=0", "qmax=51", "qmin=4", "slices=4", "tile-columns=6", "frame-parallel=1", "lag-in-frames=25", "row-mt=1", "auto-alt-ref=0", "mlt_image_format=rgba", "pix_fmt=yuva420p an=1", "vcodec=libvpx-vp9", "crf=30"
@@ -71,21 +71,27 @@ def generate_webm_file(request: LowerThirdsRequest):
 
         return output_path
     except subprocess.CalledProcessError as e:
-        raise HTTPException(status_code=500, detail=f"Error creating webm file: {e}")
+        raise HTTPException(status_code=500, detail=f"Error creating mov file: {e}")
 
 @app.post("/lower-thirds/", 
           summary="Create and Download Lower Thirds Video", 
-          description="Generates a lower-thirds `.webm` video based on the provided full name, job title, and company name. Once the video is generated, it will be available for download.",
-          response_description="The generated .webm file will be returned for download.")
+          description="Generates a lower-thirds `.mov` video based on the provided full name, job title, and company name. Once the video is generated, it will be available for download.",
+          response_description="The generated .mov file will be returned for download.")
 def create_and_download(request: LowerThirdsRequest):
-    # Generate the webm file (this may take time)
-    output_path = generate_webm_file(request)
+    # Generate the mov file (this may take time)
+    output_path = generate_mov_file(request)
     
     # Once done, return the file as a downloadable response
     if output_path.exists():
         return FileResponse(path=str(output_path), filename=request.filename)
     else:
         raise HTTPException(status_code=404, detail="File not found")
+
+@app.get("/lower-thirds/health/", 
+         summary="Health Check", 
+         description="Health check endpoint to verify the API is running correctly.")
+def health_check():
+    return JSONResponse(status_code=200, content={"status": "200 OK"})
 
 if __name__ == "__main__":
     import uvicorn
