@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 1440
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write  # Update permission to allow writing to repository
       packages: write
 
     steps:
@@ -46,7 +46,8 @@ jobs:
             echo "Invalid version format: $VERSION_CONTENT. It should follow x.x.x format."
             exit 1
           fi
-          echo "::set-output name=current_version::$VERSION_CONTENT"
+        env:
+          CURRENT_VERSION: $VERSION_CONTENT
 
       - name: Increment Version if Pushed to Main
         if: github.ref == 'refs/heads/main'
@@ -58,7 +59,7 @@ jobs:
           new_version="$major.$minor.$new_patch"
           echo $new_version > VERSION
           echo "New version: $new_version"
-          echo "::set-output name=new_version::$new_version"
+          echo "new_version=$new_version" >> $GITHUB_ENV
 
       - name: Commit and Push New Version
         if: github.ref == 'refs/heads/main'
@@ -67,7 +68,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b version-increment
           git add VERSION
-          git commit -m "Increment version to ${{ steps.increment_version.outputs.new_version }}"
+          git commit -m "Increment version to ${{ env.new_version }}"
           git push origin version-increment
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
@@ -78,8 +79,8 @@ jobs:
         with:
           token: ${{ secrets.PAT_TOKEN }}
           branch: version-increment
-          title: Increment version to ${{ steps.increment_version.outputs.new_version }}
-          body: This pull request increments the version in the VERSION file to ${{ steps.increment_version.outputs.new_version }}.
+          title: Increment version to ${{ env.new_version }}
+          body: This pull request increments the version in the VERSION file to ${{ env.new_version }}.
 
       - name: Read version from VERSION file
         id: read_version
