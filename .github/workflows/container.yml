@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
 
       - name: Verify VERSION file exists or create one
         id: check_version
@@ -70,14 +70,14 @@ jobs:
           git add VERSION
           git commit -m "Increment version to ${{ env.new_version }}"
           git fetch origin version-increment
-          git rebase origin/version-increment
+          git merge origin/version-increment || git merge --abort
           git push origin version-increment --force-with-lease
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
       - name: Create Pull Request for New Version
         if: github.ref == 'refs/heads/main'
-        uses: peter-evans/create-pull-request@v3
+        uses: peter-evans/create-pull-request@18f7dc018cc2cd597073088f7c7591b9d1c02672
         with:
           token: ${{ secrets.PAT_TOKEN }}
           branch: version-increment
@@ -92,26 +92,26 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Set up QEMU for multi-architecture builds
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7
         with:
           platforms: "linux/amd64"
 
       - name: Setup Docker buildx for multi-architecture builds
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55
         with:
           use: true
         env:
           BUILDX_NO_DEFAULT_ATTESTATIONS: 1
 
       - name: Log in to the Container registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
         with:
           registry: "ghcr.io"
           username: ${{ github.repository_owner }}
           password: ${{ secrets.PAT_TOKEN }}
 
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
         with:
           push: true
           tags: |
