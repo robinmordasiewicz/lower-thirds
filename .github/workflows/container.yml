@@ -100,13 +100,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
-      - name: Create Pull Request for New Version to Main
-        if: success()
-        uses: peter-evans/create-pull-request@18f7dc018cc2cd597073088f7c7591b9d1c02672  # Latest commit hash
+#      - name: Create Pull Request for New Version to Main
+#        if: success()
+#        uses: peter-evans/create-pull-request@18f7dc018cc2cd597073088f7c7591b9d1c02672  # Latest commit hash
+#        with:
+#          token: ${{ secrets.PAT_TOKEN }}
+#          branch: ${{ github.ref_name }}  # Use the current branch for the pull request
+#          base: main  # PR target is the main branch
+#          title: Increment version to ${{ env.new_version }}
+#          body: |
+#            This pull request increments the version in the VERSION file to ${{ env.new_version }}.
+
+      - name: auto-pull-request
+        uses: diillson/auto-pull-request@4cf50b3681cd76250f37841466e61e514a377064
         with:
-          token: ${{ secrets.PAT_TOKEN }}
-          branch: ${{ github.ref_name }}  # Use the current branch for the pull request
-          base: main  # PR target is the main branch
-          title: Increment version to ${{ env.new_version }}
-          body: |
-            This pull request increments the version in the VERSION file to ${{ env.new_version }}.
+          destination_branch: "main"
+          github_token: ${{ secrets.PAT_TOKEN || secrets.GITHUB_TOKEN}}

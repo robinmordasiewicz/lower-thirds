@@ -5,6 +5,7 @@ RUN apt-get update && \
 COPY ./requirements.txt /code/requirements.txt
 COPY ./assets /code/assets
 COPY lower-thirds.mlt /code/
+
 COPY eyebrow.mlt /code/
 
 COPY ./main.py /code/
