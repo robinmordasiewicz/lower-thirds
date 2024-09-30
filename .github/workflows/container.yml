@@ -69,6 +69,7 @@ jobs:
           git checkout -b version-increment
           git add VERSION
           git commit -m "Increment version to ${{ env.new_version }}"
+          git pull --rebase origin main
           git push origin version-increment
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
