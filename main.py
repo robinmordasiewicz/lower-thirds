@@ -7,20 +7,21 @@ from pathlib import Path
 import subprocess
 import os
 
-# Refactored FastAPI with custom docs, redoc, OpenAPI, and health check paths
+# FastAPI app with video API paths
 app = FastAPI(
-    title="Lower Thirds Video API",
-    description="An API to generate lower-thirds videos with user-provided details, such as full name, job title, and company name, and download the resulting `.mov` file.",
-    version="1.0.0",
-    docs_url="/lower-thirds/docs/",
-    redoc_url="/lower-thirds/redocs/",
-    openapi_url="/lower-thirds/openapi.json"
+    title="Lower Thirds and Eyebrow Video API",
+    description="APIs to generate videos such as lower-thirds and eyebrow with user-provided details and download the resulting `.mov` files.",
+    version="1.1.0",
+    docs_url="/video/docs/",
+    redoc_url="/video/redocs/",
+    openapi_url="/video/openapi.json"
 )
 
-MOV_DIR = "mov_files"
+MOV_DIR = "assets"
 os.makedirs(MOV_DIR, exist_ok=True)  # Ensure the output directory exists
 
-MLT_TEMPLATE_PATH = "lower-thirds.mlt"
+MLT_LOWER_THIRDS_TEMPLATE_PATH = "lower-thirds.mlt"
+MLT_EYEBROW_TEMPLATE_PATH = "eyebrow.mlt"
 
 class LowerThirdsRequest(BaseModel):
     full_name: str = Field(..., title="Full Name", description="The full name of the person to appear in the lower-thirds.")
@@ -28,31 +29,22 @@ class LowerThirdsRequest(BaseModel):
     company_name: str = Field(..., title="Company Name", description="The name of the company to appear in the lower-thirds.")
     filename: Optional[str] = Field(None, title="Filename", description="The name of the output .mov file. If not provided, a default filename will be generated.")
 
-    class Config:
-        schema_extra = {
-            "example": {
-                "full_name": "John Doe",
-                "job_title": "Senior Developer",
-                "company_name": "Tech Corp"
-            }
-        }
+class EyebrowRequest(BaseModel):
+    title_one: str = Field(..., title="Title One", description="The first title to appear in the eyebrow video.")
+    title_two: str = Field(..., title="Title Two", description="The second title to appear in the eyebrow video.")
+    filename: Optional[str] = Field(None, title="Filename", description="The name of the output .mov file. If not provided, a default filename will be generated.")
 
-def generate_mov_file(request: LowerThirdsRequest):
+def generate_mov_file(template_path: str, replacements: dict, output_filename: str):
     try:
-        # Generate a default filename if not provided
-        if not request.filename:
-            request.filename = f"{request.full_name.replace(' ', '_')}_{uuid4().hex}.webm"
-        
-        output_path = Path(MOV_DIR) / request.filename
+        output_path = Path(MOV_DIR) / output_filename
 
         # Read and modify the MLT XML file to replace placeholders with actual data
-        with open(MLT_TEMPLATE_PATH, 'r') as file:
+        with open(template_path, 'r') as file:
             mlt_content = file.read()
 
-        # Replace the placeholders with the values from the request
-        mlt_content = mlt_content.replace("Firstname Lastname", request.full_name)
-        mlt_content = mlt_content.replace("Job Title", request.job_title)
-        mlt_content = mlt_content.replace("Company", request.company_name)
+        # Replace the placeholders in the template with the values from the replacements dictionary
+        for placeholder, value in replacements.items():
+            mlt_content = mlt_content.replace(placeholder, value)
 
         # Save the modified MLT file to a temporary location
         temp_mlt_path = Path(MOV_DIR) / f"{uuid4().hex}.mlt"
@@ -73,21 +65,52 @@ def generate_mov_file(request: LowerThirdsRequest):
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=500, detail=f"Error creating mov file: {e}")
 
-@app.post("/lower-thirds/", 
+@app.post("/video/lower-thirds/", 
           summary="Create and Download Lower Thirds Video", 
-          description="Generates a lower-thirds `.mov` video based on the provided full name, job title, and company name. Once the video is generated, it will be available for download.",
-          response_description="The generated .mov file will be returned for download.")
-def create_and_download(request: LowerThirdsRequest):
-    # Generate the mov file (this may take time)
-    output_path = generate_mov_file(request)
+          description="Generates a lower-thirds `.webm` video based on the provided full name, job title, and company name. Once the video is generated, it will be available for download.",
+          response_description="The generated .webm file will be returned for download.")
+def create_and_download_lower_thirds(request: LowerThirdsRequest):
+    # Generate a default filename if not provided
+    if not request.filename:
+        request.filename = f"{request.full_name.replace(' ', '_')}_{uuid4().hex}.webm"
     
-    # Once done, return the file as a downloadable response
+    # Generate the mov file for lower thirds
+    replacements = {
+        "Firstname Lastname": request.full_name,
+        "Job Title": request.job_title,
+        "Company": request.company_name
+    }
+    output_path = generate_mov_file(MLT_LOWER_THIRDS_TEMPLATE_PATH, replacements, request.filename)
+    
+    # Return the file as a downloadable response
     if output_path.exists():
         return FileResponse(path=str(output_path), filename=request.filename)
     else:
         raise HTTPException(status_code=404, detail="File not found")
 
-@app.get("/lower-thirds/health/", 
+@app.post("/video/eyebrow/", 
+          summary="Create and Download Eyebrow Video", 
+          description="Generates an eyebrow `.webm` video based on the provided titles. Once the video is generated, it will be available for download.",
+          response_description="The generated .webm file will be returned for download.")
+def create_and_download_eyebrow(request: EyebrowRequest):
+    # Generate a default filename if not provided
+    if not request.filename:
+        request.filename = f"eyebrow_{uuid4().hex}.webm"
+    
+    # Generate the mov file for eyebrow
+    replacements = {
+        "VAR_TITLE_ONE": request.title_one,
+        "VAR_TITLE_TWO": request.title_two
+    }
+    output_path = generate_mov_file(MLT_EYEBROW_TEMPLATE_PATH, replacements, request.filename)
+    
+    # Return the file as a downloadable response
+    if output_path.exists():
+        return FileResponse(path=str(output_path), filename=request.filename)
+    else:
+        raise HTTPException(status_code=404, detail="File not found")
+
+@app.get("/video/health/", 
          summary="Health Check", 
          description="Health check endpoint to verify the API is running correctly.")
 def health_check():
