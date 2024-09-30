@@ -5,7 +5,7 @@ on:
     types: [features]
   workflow_dispatch:
   push:
-    branches:
+    branches-ignore:
       - main
     paths:
       - 'Dockerfile'
@@ -19,6 +19,7 @@ concurrency:
 
 jobs:
   version-and-build:
+    if: github.ref != 'refs/heads/main'  # Ensure the job runs only if the branch is not 'main'
     timeout-minutes: 1440
     runs-on: ubuntu-latest
     permissions:
@@ -50,7 +51,6 @@ jobs:
           CURRENT_VERSION: $VERSION_CONTENT
 
       - name: Increment Version if Pushed to Main
-        if: github.ref == 'refs/heads/main'
         id: increment_version
         run: |
           version=$(cat VERSION)
@@ -62,7 +62,6 @@ jobs:
           echo "new_version=$new_version" >> $GITHUB_ENV
 
       - name: Commit and Push New Version
-        if: github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -72,7 +71,7 @@ jobs:
           # Check if the version-increment branch exists on the remote
           if git ls-remote --exit-code --heads origin version-increment; then
             git fetch origin version-increment
-            git merge origin/version-increment || git merge --abort
+            git merge origin/version-increment --allow-unrelated-histories || git merge --abort
           fi
           # Push the branch to the remote
           git push origin version-increment --force-with-lease
@@ -80,7 +79,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Pull Request for New Version
-        if: github.ref == 'refs/heads/main'
         uses: peter-evans/create-pull-request@18f7dc018cc2cd597073088f7c7591b9d1c02672
         with:
           token: ${{ secrets.PAT_TOKEN }}
