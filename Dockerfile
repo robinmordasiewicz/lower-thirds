@@ -11,7 +11,6 @@ COPY eyebrow.mlt /code/
 COPY ./main.py /code/
 
 WORKDIR /code
-
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 ENTRYPOINT []
 CMD ["fastapi", "run", "main.py"]
