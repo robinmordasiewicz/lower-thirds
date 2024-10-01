@@ -1,27 +1,36 @@
----
-# Default values for lower-thirds.
-
-image:
-  repository: your-docker-repo/lower-thirds
-  tag: "latest"
-  pullPolicy: Always
-
 replicaCount: 1
 
+image:
+  repository: ghcr.io/robinmordasiewicz/video
+  tag: "0.0.9"
+  pullPolicy: IfNotPresent
+
 service:
-  type: ClusterIP
-  port: 80
+  type: NodePort
+  port: 8000
 
 ingress:
-  enabled: false
-  className: ""
-  annotations: {}
+  enabled: true
+  className: fwb-ingress-controller
+  annotations:
+    fortiweb-ip: "10.0.0.4"
+    fortiweb-login: "fortiweb-login-secret"
+    fortiweb-port: "8443"
+    fortiweb-ctrl-log: "enable"
+    virtual-server-ip: "10.0.0.5"
+    virtual-server-addr-type: "ipv4"
+    virtual-server-interface: "port1"
+    server-policy-web-protection-profile: "ollama"
+    server-policy-https-service: "HTTPS"
+    server-policy-http-service: "HTTP"
+    server-policy-syn-cookie: "enable"
+    server-policy-http-to-https: "disable"
   hosts:
-    - host: lower-thirds.local
+    - host: www.bankexample.com
       paths:
-        - path: /lower-thirds/
-          pathType: ImplementationSpecific
+        - /video
   tls: []
-
-resources: {}
-
+  
+resources:
+  limits:
+    nvidia.com/gpu: 0

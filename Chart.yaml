@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
-name: lower-thirds
-description: A Helm chart for deploying the lower-thirds container
+name: video
+description: A Helm chart for deploying the video container
 type: application
 version: 0.1.0
 appVersion: "1.0.0"

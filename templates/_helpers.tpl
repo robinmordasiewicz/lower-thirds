@@ -1,8 +1,8 @@
-{{- define "lower-thirds.name" -}}
+{{- define "video.name" -}}
 {{ .Chart.Name }}
 {{- end }}
 
-{{- define "lower-thirds.fullname" -}}
+{{- define "video.fullname" -}}
 {{ .Release.Name }}-{{ .Chart.Name }}
 {{- end }}
 

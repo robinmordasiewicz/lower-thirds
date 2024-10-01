@@ -1,15 +1,14 @@
----
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "lower-thirds.fullname" . }}
+  name: {{ .Chart.Name }}
+  namespace: application
   labels:
-    app: {{ include "lower-thirds.name" . }}
+    app: {{ .Chart.Name }}
 spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: 8000
+      targetPort: {{ .Values.service.port }}
   selector:
-    app: {{ include "lower-thirds.name" . }}
-
+    app: {{ .Chart.Name }}

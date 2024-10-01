@@ -1,25 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "lower-thirds.fullname" . }}
-  labels:
-    app: {{ include "lower-thirds.name" . }}
+  name: {{ .Chart.Name }}
+  namespace: application
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "lower-thirds.name" . }}
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: {{ include "lower-thirds.name" . }}
+        app: {{ .Chart.Name }}
     spec:
+      tolerations:
+      - key: "nvidia.com/gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
       containers:
-        - name: lower-thirds
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - containerPort: 8000
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        resources:
+          limits:
+            nvidia.com/gpu: {{ .Values.resources.limits["nvidia.com/gpu"] }}
