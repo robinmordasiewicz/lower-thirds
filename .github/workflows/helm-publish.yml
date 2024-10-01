@@ -3,7 +3,12 @@ name: Compile and Publish Helm Chart as Gist
 on:
   push:
     branches:
-      - main  # Or the branch you want to trigger the action on
+      - main  # Or any other branch you want to trigger the action
+    paths:
+      - 'Chart.yaml'
+      - 'values.yaml'
+      - 'templates/**'  # This triggers the action if any file inside the 'templates' directory changes
+      - VERSION
 
 jobs:
   publish_gist:
@@ -31,5 +36,3 @@ jobs:
         # Create the Gist using GitHub CLI and upload the Helm chart
         GIST_URL=$(gh gist create video-app-*.tgz --public --desc "Helm chart for video application")
         echo "Gist URL: $GIST_URL"
-
-
