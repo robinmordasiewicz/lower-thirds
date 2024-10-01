@@ -27,6 +27,9 @@ jobs:
       with:
         charts_dir: '.'  # Helm chart located in the root of the repository
 
+    - name: List directory contents for debugging
+      run: ls -lah
+
     - name: Install GitHub CLI
       run: |
         sudo apt-get update
@@ -36,6 +39,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        # Create the Gist using GitHub CLI and upload the Helm chart
-        GIST_URL=$(gh gist create *.tgz --public --desc "Helm chart for video application")
-        echo "Gist URL: $GIST_URL"
+        # Check if the .tgz file exists and create the Gist
+        if ls *.tgz 1> /dev/null 2>&1; then
+          GIST_URL=$(gh gist create *.tgz --public --desc "Helm chart for video application")
+          echo "Gist URL: $GIST_URL"
+        else
+          echo "No .tgz file found, aborting."
+          exit 1
+        fi
