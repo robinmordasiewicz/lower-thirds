@@ -1,0 +1,347 @@
+<?xml version="1.0" standalone="no"?>
+<mlt LC_NUMERIC="C" version="7.28.0" title="Shotcut version 24.09.13" producer="main_bin">
+  <profile description="PAL 4:3 DV or DVD" width="1920" height="1080" progressive="1" sample_aspect_num="1" sample_aspect_den="1" display_aspect_num="16" display_aspect_den="9" frame_rate_num="30" frame_rate_den="1" colorspace="709"/>
+  <producer id="producer0" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">assets/Fortinet_logo.svg</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">1024</property>
+    <property name="meta.media.height">124</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2024-09-30T18:07:45</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">f8a5d3d9e2502df8a2c58dd8f4128d4a</property>
+  </producer>
+  <producer id="producer1" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">assets/Fortinet-logomark-rgb-red.svg</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">76</property>
+    <property name="meta.media.height">53</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2024-10-01T00:40:31</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">907acb1efd846ea28a138e2bef23fd40</property>
+  </producer>
+  <playlist id="main_bin" title="Shotcut version 24.09.13">
+    <property name="shotcut:projectAudioChannels">2</property>
+    <property name="shotcut:projectFolder">1</property>
+    <property name="shotcut:skipConvert">0</property>
+    <property name="xml_retain">1</property>
+    <entry producer="producer0" in="00:00:00.000" out="00:00:03.967"/>
+    <entry producer="producer1" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="black" in="00:00:00.000" out="00:00:03.967">
+    <property name="length">00:00:04.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">0</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="set.test_audio">0</property>
+  </producer>
+  <playlist id="background">
+    <entry producer="black" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer3" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FF08FF00</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FF08FF00</property>
+    <property name="shotcut:detail">#FF08FF00</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <filter id="filter0" out="00:00:03.967">
+      <property name="version">0.4</property>
+      <property name="mlt_service">frei0r.bluescreen0r</property>
+      <property name="threads">0</property>
+      <property name="0">#ff00ff03</property>
+      <property name="1">0.288</property>
+    </filter>
+  </producer>
+  <playlist id="playlist1">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V1</property>
+    <entry producer="producer3" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer2" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">#FFFFFFFF</property>
+    <property name="aspect_ratio">1</property>
+    <property name="mlt_service">color</property>
+    <property name="mlt_image_format">rgba</property>
+    <property name="shotcut:caption">#FFFFFFFF</property>
+    <property name="shotcut:detail">#FFFFFFFF</property>
+    <property name="xml">was here</property>
+    <property name="seekable">1</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter1" out="00:00:03.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">1</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">00:00:00.000=-100 -100 2120 1280 1;00:00:00.367=307 47 1340 976 1;00:00:01.000=919 508 84 62 1;00:00:01.167=960 540 1 1 1;00:00:01.233=-1 -1 1 1 1;00:00:03.967=-1 -1 1 1 1;00:00:04.000=960 540 1 1 1</property>
+      <property name="filter.1">00:00:00.000=0.5;00:00:00.367=0.508854;00:00:01.000=0.500521;00:00:01.167=0.50026;00:00:01.233=-0.000260417;00:00:03.967=-0.000260417;00:00:04.000=0.50026</property>
+      <property name="filter.2">00:00:00.000=0.5;00:00:00.367=0.49537;00:00:01.000=0.499074;00:00:01.167=0.500463;00:00:01.233=-0.000462963;00:00:03.967=-0.000462963;00:00:04.000=0.500463</property>
+      <property name="filter.3">00:00:00.000=0.552083;00:00:00.367=0.348958;00:00:01.000=0.021875;00:00:01.167=0.000260417;00:00:01.233=0.000260417;00:00:03.967=0.000260417;00:00:04.000=0.000260417</property>
+      <property name="filter.4">00:00:00.000=0.592593;00:00:00.367=0.451852;00:00:01.000=0.0287037;00:00:01.167=0.000462963;00:00:01.233=0.000462963;00:00:03.967=0.000462963;00:00:04.000=0.000462963</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0.1107</property>
+    </filter>
+  </producer>
+  <playlist id="playlist0">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V2</property>
+    <entry producer="producer2" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer4" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">assets/Fortinet-logomark-rgb-red.svg</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">76</property>
+    <property name="meta.media.height">53</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2024-10-01T00:40:31</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">907acb1efd846ea28a138e2bef23fd40</property>
+    <property name="shotcut:caption">Fortinet-logomark-rgb-red.svg</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter2" out="00:00:03.967">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fix_rotate_x">0</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">00:00:00.000=-1440.46 -1134 4800.91 3348 1;00:00:01.000=867.419 475 185.842 130 1;00:00:01.500=867.419 475 185.842 130 1;00:00:02.000=565 475 186.415 130 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist2">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V3</property>
+    <entry producer="producer4" in="00:00:00.000" out="00:00:03.967"/>
+  </playlist>
+  <producer id="producer5" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">assets/Fortinet_logo.svg</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">1024</property>
+    <property name="meta.media.height">124</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2024-09-30T18:07:45</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">f8a5d3d9e2502df8a2c58dd8f4128d4a</property>
+    <property name="shotcut:caption">Fortinet_logo.svg</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter3" out="00:00:01.967">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fix_rotate_x">0</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">00:00:00.000=-316 475.087 1075.2 130.2 1;00:00:00.400=-324 475.087 1075.2 130.2 1;00:00:00.900=300 475.087 1075.2 130.2 1;00:00:01.200=422.4 475.087 1075.2 130.2 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+    </filter>
+    <filter id="filter4" out="00:00:01.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">1</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">1 468 757 148 1</property>
+      <property name="filter.1">0.197656</property>
+      <property name="filter.2">0.501852</property>
+      <property name="filter.3">0.197135</property>
+      <property name="filter.4">0.0685185</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+      <property name="disable">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist3">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V4</property>
+    <blank length="00:00:02.000"/>
+    <entry producer="producer5" in="00:00:00.000" out="00:00:01.967"/>
+  </playlist>
+  <producer id="producer6" in="00:00:00.000" out="03:59:59.967">
+    <property name="length">04:00:00.000</property>
+    <property name="eof">pause</property>
+    <property name="resource">assets/Fortinet_logo.svg</property>
+    <property name="ttl">1</property>
+    <property name="aspect_ratio">1</property>
+    <property name="meta.media.progressive">1</property>
+    <property name="seekable">1</property>
+    <property name="format">2</property>
+    <property name="meta.media.width">1024</property>
+    <property name="meta.media.height">124</property>
+    <property name="mlt_service">qimage</property>
+    <property name="creation_time">2024-09-30T18:07:45</property>
+    <property name="shotcut:skipConvert">1</property>
+    <property name="xml">was here</property>
+    <property name="shotcut:hash">f8a5d3d9e2502df8a2c58dd8f4128d4a</property>
+    <property name="shotcut:caption">Fortinet_logo.svg</property>
+    <property name="meta.shotcut.vui">1</property>
+    <filter id="filter5" out="00:00:01.967">
+      <property name="background">color:#00000000</property>
+      <property name="mlt_service">affine</property>
+      <property name="shotcut:filter">affineSizePosition</property>
+      <property name="transition.fix_rotate_x">0</property>
+      <property name="transition.fill">1</property>
+      <property name="transition.distort">0</property>
+      <property name="transition.rect">00:00:00.000=571 475.087 1075.2 130.2 1;00:00:00.267=422.4 475.087 1075.2 130.2 1</property>
+      <property name="transition.valign">middle</property>
+      <property name="transition.halign">center</property>
+      <property name="shotcut:animIn">00:00:00.000</property>
+      <property name="shotcut:animOut">00:00:00.000</property>
+      <property name="transition.threads">0</property>
+    </filter>
+    <filter id="filter6" out="00:00:01.967">
+      <property name="filter">frei0r.alphaspot</property>
+      <property name="mlt_service">mask_start</property>
+      <property name="shotcut:filter">maskSimpleShape</property>
+      <property name="filter.9">1</property>
+      <property name="filter.0">0</property>
+      <property name="shotcut:rect">568 468 1111 148 1</property>
+      <property name="filter.1">0.585156</property>
+      <property name="filter.2">0.501852</property>
+      <property name="filter.3">0.289323</property>
+      <property name="filter.4">0.0685185</property>
+      <property name="filter.5">0.5</property>
+      <property name="filter.6">0</property>
+    </filter>
+  </producer>
+  <playlist id="playlist4">
+    <property name="shotcut:video">1</property>
+    <property name="shotcut:name">V5</property>
+    <blank length="00:00:02.000"/>
+    <entry producer="producer6" in="00:00:00.000" out="00:00:01.967"/>
+  </playlist>
+  <tractor id="tractor0" title="Shotcut version 24.09.13" in="00:00:00.000" out="00:00:03.967">
+    <property name="shotcut">1</property>
+    <property name="shotcut:projectAudioChannels">2</property>
+    <property name="shotcut:projectFolder">1</property>
+    <property name="shotcut:skipConvert">0</property>
+    <property name="shotcut:scaleFactor">17.06</property>
+    <track producer="background"/>
+    <track producer="playlist1"/>
+    <track producer="playlist0"/>
+    <track producer="playlist2"/>
+    <track producer="playlist3"/>
+    <track producer="playlist4"/>
+    <transition id="transition2">
+      <property name="a_track">0</property>
+      <property name="b_track">1</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition0">
+      <property name="a_track">1</property>
+      <property name="b_track">1</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">1</property>
+    </transition>
+    <transition id="transition1">
+      <property name="a_track">0</property>
+      <property name="b_track">2</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition3">
+      <property name="a_track">1</property>
+      <property name="b_track">2</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition4">
+      <property name="a_track">0</property>
+      <property name="b_track">3</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition5">
+      <property name="a_track">1</property>
+      <property name="b_track">3</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition6">
+      <property name="a_track">0</property>
+      <property name="b_track">4</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition7">
+      <property name="a_track">1</property>
+      <property name="b_track">4</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+    <transition id="transition8">
+      <property name="a_track">0</property>
+      <property name="b_track">5</property>
+      <property name="mlt_service">mix</property>
+      <property name="always_active">1</property>
+      <property name="sum">1</property>
+    </transition>
+    <transition id="transition9">
+      <property name="a_track">1</property>
+      <property name="b_track">5</property>
+      <property name="version">0.1</property>
+      <property name="mlt_service">frei0r.cairoblend</property>
+      <property name="1">normal</property>
+      <property name="disable">0</property>
+    </transition>
+  </tractor>
+</mlt>
