@@ -8,6 +8,9 @@ on:
       - 'Chart.yaml'
       - 'values.yaml'
       - 'templates/**'  # This triggers the action if any file inside the 'templates' directory changes
+      - 'VERSION'  # Include the VERSION file in the paths list
+
+  workflow_dispatch:  # This adds the manual trigger option
 
 jobs:
   publish_gist:
