@@ -117,12 +117,12 @@ def create_and_download_eyebrow(request: EyebrowRequest):
 
 @app.post("/video/flying-logo/", 
           summary="Create and Download Flying Logo Video", 
-          description="Generates a flying logo `.webm` video based on the provided text. Once the video is generated, it will be available for download.",
+          description="Generates a flying-logo `.webm` video based on the provided text. Once the video is generated, it will be available for download.",
           response_description="The generated .webm file will be returned for download.")
-def create_and_download_flying-logo(request: FlyingLogoRequest):
+def create_and_download_flying_logo(request: FlyingLogoRequest):  # Keep the function name with underscores
     # Generate a default filename if not provided
     if not request.filename:
-        request.filename = f"flying-logo_{uuid4().hex}.webm"
+        request.filename = f"flying_logo_{uuid4().hex}.webm"
     
     # Generate the webm file for flying logo
     replacements = {
