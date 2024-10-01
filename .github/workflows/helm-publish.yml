@@ -18,15 +18,13 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@3b24654d6b515a88a9fae601fcb00c2da2f1f8a7  # SHA for actions/checkout@v3
 
     - name: Set up Helm
-      uses: azure/setup-helm@v3
-      with:
-        version: v3.12.0
+      uses: azure/setup-helm@68037e3f7beef75a71d283ab7d7f9e10c6ae13d7  # SHA for azure/setup-helm@v3
 
     - name: Package Helm chart
-      run: helm package ./video-app
+      run: helm package .
 
     - name: Install GitHub CLI
       run: |
@@ -38,5 +36,5 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         # Create the Gist using GitHub CLI and upload the Helm chart
-        GIST_URL=$(gh gist create video-app-*.tgz --public --desc "Helm chart for video application")
+        GIST_URL=$(gh gist create *.tgz --public --desc "Helm chart for video application")
         echo "Gist URL: $GIST_URL"
