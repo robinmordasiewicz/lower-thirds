@@ -9,9 +9,9 @@ import os
 
 # FastAPI app with video API paths
 app = FastAPI(
-    title="Lower Thirds and Eyebrow Video API",
-    description="APIs to generate videos such as lower-thirds and eyebrow with user-provided details and download the resulting `.webm` files.",
-    version="1.1.0",
+    title="Video Generation API",
+    description="APIs to generate videos such as lower-thirds, eyebrow, and flying-logo with user-provided details and download the resulting `.webm` files.",
+    version="1.2.0",
     docs_url="/video/docs/",
     redoc_url="/video/redocs/",
     openapi_url="/video/openapi.json"
@@ -22,6 +22,7 @@ os.makedirs(MOV_DIR, exist_ok=True)  # Ensure the output directory exists
 
 MLT_LOWER_THIRDS_TEMPLATE_PATH = "lower-thirds.mlt"
 MLT_EYEBROW_TEMPLATE_PATH = "eyebrow.mlt"
+MLT_FLYING_LOGO_TEMPLATE_PATH = "flying-logo.mlt"  # Assume there's a template for the flying logo
 
 class LowerThirdsRequest(BaseModel):
     full_name: str = Field(..., title="Full Name", description="The full name of the person to appear in the lower-thirds.")
@@ -32,6 +33,10 @@ class LowerThirdsRequest(BaseModel):
 class EyebrowRequest(BaseModel):
     title_one: str = Field(..., title="Title One", description="The first title to appear in the eyebrow video.")
     title_two: str = Field(..., title="Title Two", description="The second title to appear in the eyebrow video.")
+    filename: Optional[str] = Field(None, title="Filename", description="The name of the output .webm file. If not provided, a default filename will be generated.")
+
+class FlyingLogoRequest(BaseModel):
+    logo_text: str = Field(..., title="Logo Text", description="The text that will appear alongside the flying logo.")
     filename: Optional[str] = Field(None, title="Filename", description="The name of the output .webm file. If not provided, a default filename will be generated.")
 
 def generate_webm_file(template_path: str, replacements: dict, output_filename: str):
@@ -103,6 +108,27 @@ def create_and_download_eyebrow(request: EyebrowRequest):
         "VAR_TITLE_TWO": request.title_two
     }
     output_path = generate_webm_file(MLT_EYEBROW_TEMPLATE_PATH, replacements, request.filename)
+    
+    # Return the file as a downloadable response
+    if output_path.exists():
+        return FileResponse(path=str(output_path), filename=request.filename)
+    else:
+        raise HTTPException(status_code=404, detail="File not found")
+
+@app.post("/video/flying-logo/", 
+          summary="Create and Download Flying Logo Video", 
+          description="Generates a flying logo `.webm` video based on the provided text. Once the video is generated, it will be available for download.",
+          response_description="The generated .webm file will be returned for download.")
+def create_and_download_flying-logo(request: FlyingLogoRequest):
+    # Generate a default filename if not provided
+    if not request.filename:
+        request.filename = f"flying-logo_{uuid4().hex}.webm"
+    
+    # Generate the webm file for flying logo
+    replacements = {
+        "VAR_LOGO_TEXT": request.logo_text
+    }
+    output_path = generate_webm_file(MLT_FLYING_LOGO_TEMPLATE_PATH, replacements, request.filename)
     
     # Return the file as a downloadable response
     if output_path.exists():
