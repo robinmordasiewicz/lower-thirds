@@ -1,25 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "video.fullname" . }}
-  labels:
-    app: {{ include "video.name" . }}
+  name: {{ .Chart.Name }}
+  namespace: application
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "video.name" . }}
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: {{ include "video.name" . }}
+        app: {{ .Chart.Name }}
     spec:
+      tolerations:
+      - key: "nvidia.com/gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
       containers:
-        - name: video
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - containerPort: 8000
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: {{ .Values.service.port }}
+        resources:
+          limits:
+            nvidia.com/gpu: {{ .Values.resources.limits["nvidia.com/gpu"] }}

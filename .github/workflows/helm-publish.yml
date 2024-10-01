@@ -1,0 +1,38 @@
+name: Compile and Publish Helm Chart as Gist
+
+on:
+  push:
+    branches:
+      - main  # Or the branch you want to trigger the action
+
+jobs:
+  publish_gist:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Helm
+      uses: azure/setup-helm@v3
+      with:
+        version: v3.12.0
+
+    - name: Package Helm chart
+      run: helm package ./video-app
+
+    - name: Create Gist
+      id: create_gist
+      uses: matthewoliver/create-gist@v1
+      with:
+        gist_description: "Helm chart for video application"
+        gist_filename: "video-app-{{ github.sha }}.tgz"
+        gist_content: |
+          $(cat video-app-*.tgz | base64)
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Upload the packaged Helm chart to Gist
+      run: |
+        echo "Gist URL: ${{ steps.create_gist.outputs.gist_url }}"
+
