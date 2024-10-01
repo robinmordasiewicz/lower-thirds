@@ -18,7 +18,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@3b24654d6b515a88a9fae601fcb00c2da2f1f8a7  # SHA for actions/checkout@v3
+      uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938  # SHA for actions/checkout@v3
 
     - name: Package Helm chart with chart-releaser
       uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584  # Use the latest release version
