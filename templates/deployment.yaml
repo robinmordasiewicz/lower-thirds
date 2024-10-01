@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "lower-thirds.fullname" . }}
+  name: {{ include "video.fullname" . }}
   labels:
-    app: {{ include "lower-thirds.name" . }}
+    app: {{ include "video.name" . }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "lower-thirds.name" . }}
+      app: {{ include "video.name" . }}
   template:
     metadata:
       labels:
-        app: {{ include "lower-thirds.name" . }}
+        app: {{ include "video.name" . }}
     spec:
       containers:
-        - name: lower-thirds
+        - name: video
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:

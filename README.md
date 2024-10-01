@@ -25,7 +25,7 @@ docker run -d --name lower-thirds -p 80:8000 lower-thirds:latest
 ### API request
 
 ```bash
-curl -X POST "http://localhost/lower-thirds/" \
+curl -X POST "http://localhost/video/lower-thirds/" \
     -H "Content-Type: application/json" \
     -d '{
         "full_name": "John Doe",

@@ -1,8 +1,8 @@
 ---
-# Default values for lower-thirds.
+# Default values for video.
 
 image:
-  repository: your-docker-repo/lower-thirds
+  repository: your-docker-repo/video
   tag: "latest"
   pullPolicy: Always
 
@@ -17,9 +17,9 @@ ingress:
   className: ""
   annotations: {}
   hosts:
-    - host: lower-thirds.local
+    - host: video.local
       paths:
-        - path: /lower-thirds/
+        - path: /video/
           pathType: ImplementationSpecific
   tls: []
 
