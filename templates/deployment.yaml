@@ -24,4 +24,5 @@ spec:
         - containerPort: {{ .Values.service.port }}
         resources:
           limits:
-            nvidia.com/gpu: {{ .Values.resources.limits["nvidia.com/gpu"] }}
+            nvidia.com/gpu: {{ index .Values.resources.limits "nvidia.com/gpu" }}
+
