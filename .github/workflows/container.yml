@@ -67,7 +67,7 @@ jobs:
         uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7  # Latest commit hash
 
       - name: Setup Docker buildx for multi-architecture builds
-        uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55  # Latest commit hash
+        uses: docker/setup-buildx-action@c47758b77c9736f4b2ef4073d4d51994fabfe349  # Latest commit hash
         with:
           use: true
 
