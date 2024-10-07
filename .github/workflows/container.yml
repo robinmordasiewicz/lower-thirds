@@ -64,7 +64,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Set up QEMU for multi-architecture builds
-        uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7  # Latest commit hash
+        uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf  # Latest commit hash
 
       - name: Setup Docker buildx for multi-architecture builds
         uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55  # Latest commit hash
