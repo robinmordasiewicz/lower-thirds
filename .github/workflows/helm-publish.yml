@@ -31,7 +31,7 @@ jobs:
       uses: azure/setup-helm@fe7b79cd5ee1e45176fcad797de68ecaf3ca4814
 
     - name: Run chart-releaser
-      uses: helm/chart-releaser-action@a917fd15b20e8b64b94d9158ad54cd6345335584  # Use the specific SHA for chart-releaser-action
+      uses: helm/chart-releaser-action@cae68fefc6b5f367a0275617c9f83181ba54714f  # Use the specific SHA for chart-releaser-action
       env:
         CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"  # Set the CR_TOKEN to authenticate with GitHub
       with:
